@@ -417,13 +417,13 @@ REPO="https://raw.githubusercontent.com/github/awesome-copilot/main"
 mkdir -p .github/agents .github/hooks .github/instructions .github/workflows
 
 # Agents
-curl -sO .github/agents/CSharpExpert.agent.md "$REPO/agents/CSharpExpert.agent.md"
-curl -sO .github/agents/dotnet-upgrade.agent.md "$REPO/agents/dotnet-upgrade.agent.md"
-curl -sO .github/agents/api-architect.agent.md "$REPO/agents/api-architect.agent.md"
+curl -so .github/agents/CSharpExpert.agent.md "$REPO/agents/CSharpExpert.agent.md"
+curl -so .github/agents/dotnet-upgrade.agent.md "$REPO/agents/dotnet-upgrade.agent.md"
+curl -so .github/agents/api-architect.agent.md "$REPO/agents/api-architect.agent.md"
 
 # Instructions
-curl -sO .github/instructions/aspnet-rest-apis.instructions.md "$REPO/instructions/aspnet-rest-apis.instructions.md"
-curl -sO .github/instructions/dotnet-framework.instructions.md "$REPO/instructions/dotnet-framework.instructions.md"
+curl -so .github/instructions/aspnet-rest-apis.instructions.md "$REPO/instructions/aspnet-rest-apis.instructions.md"
+curl -so .github/instructions/dotnet-framework.instructions.md "$REPO/instructions/dotnet-framework.instructions.md"
 
 # Plugins
 copilot plugin install csharp-dotnet-development@awesome-copilot
