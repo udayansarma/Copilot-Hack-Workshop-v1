@@ -80,10 +80,11 @@ workshop/
 ├── frontend/           # React + Vite + TailwindCSS portal
 ├── backend/            # Express + SQLite progress tracking API
 ├── exercises/          # Starter code for each module
-│   ├── module-2-plan-mode/
-│   ├── module-3-legacy-code/
-│   ├── module-4-instructions/
-│   └── module-5-agents/
+│   ├── module-2-plan-mode/          # Plan Mode step-by-step guide
+│   ├── module-3-legacy-code/        # Legacy C# with 8 anti-patterns
+│   ├── module-4-instructions/       # copilot-instructions.md template
+│   ├── module-5-agents/             # Code review agent + hooks guide
+│   └── awesome-copilot-guide/       # Integration guide (60+ resources)
 └── package.json        # Root workspace
 ```
 

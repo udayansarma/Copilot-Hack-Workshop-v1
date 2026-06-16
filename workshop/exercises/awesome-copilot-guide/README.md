@@ -4,6 +4,53 @@
 
 The `awesome-copilot` repository is a community collection of **agents, instructions, skills, plugins, hooks, and workflows** that supercharge GitHub Copilot. This guide walks you through installing and using each capability area — with a focus on C#/.NET development.
 
+## 📐 Capability Map
+
+```mermaid
+graph TD
+    subgraph "🤖 Agents — AI Personas"
+        AG1["CSharpExpert"]
+        AG2["dotnet-upgrade"]
+        AG3["api-architect"]
+        AG4["dotnet-fullstack-mentor"]
+        AG5["csharp-mcp-expert"]
+    end
+    
+    subgraph "📋 Instructions — Coding Standards"
+        IN1["aspnet-rest-apis"]
+        IN2["azure-functions-csharp"]
+        IN3["blazor"]
+        IN4["dotnet-framework"]
+        IN5["csharp"]
+    end
+    
+    subgraph "🛠️ Skills — Deep Expertise"
+        SK1["aspire"]
+        SK2["csharp-xunit"]
+        SK3["dotnet-best-practices"]
+        SK4["containerize-aspnetcore"]
+        SK5["nuget-manager"]
+    end
+    
+    subgraph "⚡ Hooks — Automation"
+        HK1["secrets-scanner"]
+        HK2["tool-guardian"]
+        HK3["session-auto-commit"]
+    end
+    
+    subgraph "🔌 Plugins — Bundles"
+        PL1["csharp-dotnet-development"]
+        PL2["context-engineering"]
+        PL3["openapi-to-app-csharp"]
+    end
+    
+    style AG1 fill:#238636,color:#fff
+    style IN1 fill:#1f6feb,color:#fff
+    style SK1 fill:#8957e5,color:#fff
+    style HK1 fill:#da3633,color:#fff
+    style PL1 fill:#e3b341,color:#000
+```
+
 ---
 
 ## Table of Contents
@@ -74,6 +121,46 @@ curl -o .github/agents/api-architect.agent.md \
 
 **Use when:** Designing REST APIs, reviewing API contracts, or establishing API standards.
 
+#### C# .NET Janitor *(New)*
+Performs cleanup, modernization, and tech debt remediation on C#/.NET codebases.
+
+```bash
+curl -o .github/agents/csharp-dotnet-janitor.agent.md \
+  https://raw.githubusercontent.com/github/awesome-copilot/main/agents/csharp-dotnet-janitor.agent.md
+```
+
+**Use when:** Cleaning up code smells, removing dead code, modernizing syntax.
+
+#### C# MCP Expert *(New)*
+Specializes in building and using MCP (Model Context Protocol) servers in C#.
+
+```bash
+curl -o .github/agents/csharp-mcp-expert.agent.md \
+  https://raw.githubusercontent.com/github/awesome-copilot/main/agents/csharp-mcp-expert.agent.md
+```
+
+**Use when:** Building custom MCP servers in C#, connecting agents to external tools.
+
+#### .NET Fullstack Mentor *(New)*
+A fullstack .NET mentor covering frontend, backend, and cloud deployment.
+
+```bash
+curl -o .github/agents/dotnet-fullstack-mentor.agent.md \
+  https://raw.githubusercontent.com/github/awesome-copilot/main/agents/dotnet-fullstack-mentor.agent.md
+```
+
+**Use when:** Building end-to-end .NET applications, learning fullstack patterns.
+
+#### Expert .NET Software Engineer *(New)*
+Senior-level .NET engineering guidance across the full software lifecycle.
+
+```bash
+curl -o .github/agents/expert-dotnet-software-engineer.agent.md \
+  https://raw.githubusercontent.com/github/awesome-copilot/main/agents/expert-dotnet-software-engineer.agent.md
+```
+
+**Use when:** Complex engineering decisions, architecture reviews, production-readiness.
+
 ### Exercise: Install & Test an Agent
 1. Create `.github/agents/` in your project
 2. Download the C# Expert agent (command above)
@@ -129,6 +216,69 @@ curl -o .github/instructions/dotnet-upgrade.instructions.md \
 ```
 Covers: Progressive migration from .NET Framework to modern .NET.
 
+#### General C# *(New)*
+```bash
+curl -o .github/instructions/csharp.instructions.md \
+  https://raw.githubusercontent.com/github/awesome-copilot/main/instructions/csharp.instructions.md
+```
+Covers: Comprehensive C# coding guidelines and conventions.
+
+#### Blazor *(New)*
+```bash
+curl -o .github/instructions/blazor.instructions.md \
+  https://raw.githubusercontent.com/github/awesome-copilot/main/instructions/blazor.instructions.md
+```
+Covers: Blazor component development, state management, interop.
+
+#### C# MCP Server Development *(New)*
+```bash
+curl -o .github/instructions/csharp-mcp-server.instructions.md \
+  https://raw.githubusercontent.com/github/awesome-copilot/main/instructions/csharp-mcp-server.instructions.md
+```
+Covers: Building MCP servers in C# for Copilot tool integration.
+
+#### Razor Pages *(New)*
+```bash
+curl -o .github/instructions/csharp-razorpages.instructions.md \
+  https://raw.githubusercontent.com/github/awesome-copilot/main/instructions/csharp-razorpages.instructions.md
+```
+Covers: Razor Pages development patterns and best practices.
+
+#### .NET Architecture Best Practices *(New)*
+```bash
+curl -o .github/instructions/dotnet-architecture-good-practices.instructions.md \
+  https://raw.githubusercontent.com/github/awesome-copilot/main/instructions/dotnet-architecture-good-practices.instructions.md
+```
+Covers: Clean architecture, SOLID principles, design patterns for .NET.
+
+#### .NET WPF *(New)*
+```bash
+curl -o .github/instructions/dotnet-wpf.instructions.md \
+  https://raw.githubusercontent.com/github/awesome-copilot/main/instructions/dotnet-wpf.instructions.md
+```
+Covers: WPF desktop application development with MVVM pattern.
+
+#### .NET MAUI *(New)*
+```bash
+curl -o .github/instructions/dotnet-maui.instructions.md \
+  https://raw.githubusercontent.com/github/awesome-copilot/main/instructions/dotnet-maui.instructions.md
+```
+Covers: .NET MAUI cross-platform mobile and desktop development.
+
+#### Playwright .NET *(New)*
+```bash
+curl -o .github/instructions/playwright-dotnet.instructions.md \
+  https://raw.githubusercontent.com/github/awesome-copilot/main/instructions/playwright-dotnet.instructions.md
+```
+Covers: End-to-end testing with Playwright for .NET applications.
+
+#### Copilot SDK for C# *(New)*
+```bash
+curl -o .github/instructions/copilot-sdk-csharp.instructions.md \
+  https://raw.githubusercontent.com/github/awesome-copilot/main/instructions/copilot-sdk-csharp.instructions.md
+```
+Covers: Building applications using the GitHub Copilot SDK in C#.
+
 ### Exercise: Install & Compare
 1. Pick **two** instruction files from the list above and download them
 2. Open a C# file and ask Copilot to generate a new service class **without** instructions installed
@@ -183,6 +333,84 @@ Covers: Analyze codebases to create detailed architectural documentation. Detect
 gh skills install github/awesome-copilot ai-ready
 ```
 Covers: Analyze your repo and generate AGENTS.md, copilot-instructions.md, CI workflows, and issue templates customized to your stack.
+
+#### C# xUnit Testing *(New)*
+```bash
+gh skills install github/awesome-copilot csharp-xunit
+```
+Covers: Writing xUnit tests with AAA pattern, fixtures, theory data, and mocking.
+
+#### C# NUnit Testing *(New)*
+```bash
+gh skills install github/awesome-copilot csharp-nunit
+```
+Covers: NUnit test patterns, assertions, and test lifecycle.
+
+#### C# MSTest Testing *(New)*
+```bash
+gh skills install github/awesome-copilot csharp-mstest
+```
+Covers: MSTest framework patterns and Visual Studio integration.
+
+#### C# Async Patterns *(New)*
+```bash
+gh skills install github/awesome-copilot csharp-async
+```
+Covers: Advanced async/await patterns, cancellation, parallel processing, channels.
+
+#### .NET Best Practices *(New)*
+```bash
+gh skills install github/awesome-copilot dotnet-best-practices
+```
+Covers: Comprehensive .NET development best practices across all layers.
+
+#### .NET Design Pattern Review *(New)*
+```bash
+gh skills install github/awesome-copilot dotnet-design-pattern-review
+```
+Covers: Review code against SOLID, GoF, and enterprise .NET patterns.
+
+#### .NET MCP Server Builder *(New)*
+```bash
+gh skills install github/awesome-copilot dotnet-mcp-builder
+```
+Covers: Building MCP servers in .NET to provide tools to Copilot agents.
+
+#### Containerize ASP.NET Core *(New)*
+```bash
+gh skills install github/awesome-copilot containerize-aspnetcore
+```
+Covers: Dockerizing ASP.NET Core apps with multi-stage builds and best practices.
+
+#### Containerize ASP.NET Framework *(New)*
+```bash
+gh skills install github/awesome-copilot containerize-aspnet-framework
+```
+Covers: Containerizing legacy ASP.NET Framework apps with Windows containers.
+
+#### NuGet Package Manager *(New)*
+```bash
+gh skills install github/awesome-copilot nuget-manager
+```
+Covers: NuGet package management, version conflicts, vulnerability scanning.
+
+#### .NET Upgrade *(New)*
+```bash
+gh skills install github/awesome-copilot dotnet-upgrade
+```
+Covers: Upgrading .NET Framework projects to modern .NET with migration strategies.
+
+#### Fluent UI Blazor *(New)*
+```bash
+gh skills install github/awesome-copilot fluentui-blazor
+```
+Covers: Using Fluent UI components in Blazor applications.
+
+#### C# XML Documentation *(New)*
+```bash
+gh skills install github/awesome-copilot csharp-docs
+```
+Covers: Generating XML documentation comments for C# code.
 
 ### Exercise: Install Aspire Skill
 1. Run: `gh skills install github/awesome-copilot aspire`
@@ -311,6 +539,15 @@ cp -r /tmp/awesome-copilot/hooks/governance-audit .github/hooks/
 
 **Triggers:** `sessionStart`, `sessionEnd`, `userPromptSubmitted` — full audit trail.
 
+#### Session Logger *(New)*
+Logs all Copilot agent session activity for debugging and audit purposes.
+
+```bash
+cp -r /tmp/awesome-copilot/hooks/session-logger .github/hooks/
+```
+
+**Trigger:** Multiple events — comprehensive session activity logging.
+
 ### Exercise: Install the Secrets Scanner
 1. Copy the secrets-scanner hook into `.github/hooks/`
 2. Ensure the scan script is executable: `chmod +x .github/hooks/secrets-scanner/scan-secrets.sh`
@@ -390,14 +627,17 @@ your-repo/
 │   ├── agents/
 │   │   ├── CSharpExpert.agent.md        # C# development expert
 │   │   ├── dotnet-upgrade.agent.md      # Legacy modernization
-│   │   └── api-architect.agent.md       # API design mentor
+│   │   ├── api-architect.agent.md       # API design mentor
+│   │   └── csharp-mcp-expert.agent.md   # MCP server building
 │   ├── hooks/
 │   │   ├── secrets-scanner/             # Scan for leaked secrets
 │   │   ├── tool-guardian/               # Block dangerous operations
 │   │   └── session-auto-commit/         # Auto-commit on session end
 │   ├── instructions/
 │   │   ├── aspnet-rest-apis.instructions.md
-│   │   └── azure-functions-csharp.instructions.md
+│   │   ├── azure-functions-csharp.instructions.md
+│   │   ├── csharp.instructions.md
+│   │   └── dotnet-architecture-good-practices.instructions.md
 │   └── workflows/
 │       ├── daily-issues-report.md
 │       └── relevance-check.md
@@ -416,22 +656,30 @@ REPO="https://raw.githubusercontent.com/github/awesome-copilot/main"
 # Create directories
 mkdir -p .github/agents .github/hooks .github/instructions .github/workflows
 
-# Agents
+# Agents (core)
 curl -so .github/agents/CSharpExpert.agent.md "$REPO/agents/CSharpExpert.agent.md"
 curl -so .github/agents/dotnet-upgrade.agent.md "$REPO/agents/dotnet-upgrade.agent.md"
 curl -so .github/agents/api-architect.agent.md "$REPO/agents/api-architect.agent.md"
 
+# Agents (extended)
+curl -so .github/agents/csharp-mcp-expert.agent.md "$REPO/agents/csharp-mcp-expert.agent.md"
+curl -so .github/agents/dotnet-fullstack-mentor.agent.md "$REPO/agents/dotnet-fullstack-mentor.agent.md"
+
 # Instructions
+curl -so .github/instructions/csharp.instructions.md "$REPO/instructions/csharp.instructions.md"
 curl -so .github/instructions/aspnet-rest-apis.instructions.md "$REPO/instructions/aspnet-rest-apis.instructions.md"
 curl -so .github/instructions/dotnet-framework.instructions.md "$REPO/instructions/dotnet-framework.instructions.md"
-
-# Plugins
-copilot plugin install csharp-dotnet-development@awesome-copilot
-copilot plugin install context-engineering@awesome-copilot
+curl -so .github/instructions/dotnet-architecture-good-practices.instructions.md "$REPO/instructions/dotnet-architecture-good-practices.instructions.md"
 
 # Skills
 gh skills install github/awesome-copilot aspire
 gh skills install github/awesome-copilot aspnet-minimal-api-openapi
+gh skills install github/awesome-copilot csharp-xunit
+gh skills install github/awesome-copilot dotnet-best-practices
+
+# Plugins
+copilot plugin install csharp-dotnet-development@awesome-copilot
+copilot plugin install context-engineering@awesome-copilot
 
 echo "✅ Awesome Copilot C#/.NET stack installed!"
 ```
