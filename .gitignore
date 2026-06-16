@@ -1,0 +1,65 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environment
+.venv/
+venv/
+env/
+ENV/
+
+# Environment / secrets
+.env
+*.key
+cukey.txt
+
+# Test / temp output
+test_*.txt
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Terraform state (keep .tf files, ignore state)
+terraform/terraform.tfstate*
+terraform/.terraform/
+terraform/tfplan
+
+# Backup / redundant files
+bak/
+
+# JSON output artifacts (runtime, not source)
+results_cu_gpt.json
+results_cu_only.json
+
+# Azure Functions local config (contains connection strings)
+local.settings.json
+
+# Venvs
+.venv311/
+
+# Bundled packages (built by CI, not committed)
+.python_packages/
+
+# Deploy artifacts
+IaC/func_deploy.zip
+IaC/staging_tmp/
+
+# Workshop
+node_modules/
+*.db
+*.db-wal
+*.db-shm
+workshop/frontend/dist/

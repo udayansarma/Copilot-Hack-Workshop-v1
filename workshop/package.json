@@ -1,0 +1,20 @@
+{
+  "name": "copilot-hackathon-workshop",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GitHub Copilot Hackathon Workshop — 4+ hour hands-on workshop for C#/.NET developers",
+  "workspaces": [
+    "workshop/frontend",
+    "workshop/backend"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "dev:frontend": "npm run dev --workspace=workshop/frontend",
+    "dev:backend": "npm run dev --workspace=workshop/backend",
+    "build": "npm run build --workspace=workshop/frontend",
+    "start": "npm run start --workspace=workshop/backend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
