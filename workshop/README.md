@@ -34,6 +34,7 @@ The portal opens at **http://localhost:5173**. The API runs on port 3001.
 | 4 | Custom Instructions | 45 min | copilot-instructions.md, standards |
 | 5 | Agents, Skills, MCP & Hooks | 60 min | Custom agents, hooks |
 | 6 | Hackathon Challenge | 60+ min | Team competition, Plan Mode |
+| 7 | **OctoCAT Supply — Zero to Agents** 🆕 | 90+ min | Enterprise Copilot (Agent Mode, Vision, MCP, Skills) |
 
 ## 🎯 Key Feature: Plan Mode Experience
 
@@ -84,6 +85,7 @@ workshop/
 │   ├── module-3-legacy-code/        # Legacy C# with 8 anti-patterns
 │   ├── module-4-instructions/       # copilot-instructions.md template
 │   ├── module-5-agents/             # Code review agent + hooks guide
+│   ├── module-7-octocat-supply/     # OctoCAT Supply Zero-to-Agents lab
 │   └── awesome-copilot-guide/       # Integration guide (60+ resources)
 └── package.json        # Root workspace
 ```

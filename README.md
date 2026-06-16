@@ -12,6 +12,7 @@ flowchart LR
     BREAK --> M4["📋 Module 4\nInstructions\n45 min"]
     M4 --> M5["🤖 Module 5\nAgents & Hooks\n60 min"]
     M5 --> M6["🏆 Module 6\nHackathon\n60+ min"]
+    M6 --> M7["🚀 Module 7\nOctoCAT Supply\n90+ min"]
     
     style M1 fill:#238636,color:#fff
     style M2 fill:#da3633,color:#fff
@@ -20,6 +21,7 @@ flowchart LR
     style M4 fill:#8957e5,color:#fff
     style M5 fill:#e3b341,color:#000
     style M6 fill:#da3633,color:#fff
+    style M7 fill:#238636,color:#fff
 ```
 
 ## 🚀 Quick Start
@@ -48,6 +50,7 @@ The workshop portal opens at **http://localhost:5173**. The API runs on port **3
 | 4 | Custom Instructions | 45 min | `.github/copilot-instructions.md`, team standards | [Exercise →](workshop/exercises/module-4-instructions/) |
 | 5 | Agents, Skills, MCP & Hooks | 60 min | Build agents, MCP servers, pre-commit hooks | [Exercise →](workshop/exercises/module-5-agents/) |
 | 6 | Hackathon Challenge | 60+ min | Team competition with live leaderboard | Portal-guided |
+| 7 | **OctoCAT Supply — Zero to Agents** 🆕 | 90+ min | Full enterprise Copilot demo (Agent Mode, Vision, MCP, Skills, Hooks) | [Exercise →](workshop/exercises/module-7-octocat-supply/) |
 
 ## 🎯 What You'll Build
 
@@ -88,6 +91,7 @@ graph TD
 │   │   ├── module-3-legacy-code/        # Legacy C# with 8 anti-patterns
 │   │   ├── module-4-instructions/       # copilot-instructions.md template
 │   │   ├── module-5-agents/             # Code review agent + hooks
+│   │   ├── module-7-octocat-supply/     # OctoCAT Supply Zero-to-Agents lab
 │   │   └── awesome-copilot-guide/       # Integration guide for awesome-copilot
 │   ├── package.json        # Root workspace (npm install here)
 │   └── README.md           # Facilitator guide with agenda & tips
