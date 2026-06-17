@@ -127,7 +127,7 @@ If you plan to do the MCP Server exercises, create a PAT:
 ### Step 1: Fork & Clone the Repository
 
 **Fork the repo** (do this first in your browser):
-1. Go to **https://github.com/Azure-Samples/octocat-supply**
+1. Go to **https://github.com/udayansarma/octocat-supply**
 2. Click the **"Fork"** button (top right)
 3. Select your personal account as the destination
 4. Wait for the fork to complete
@@ -485,8 +485,9 @@ information for remediation.
 
 ## 🔗 Resources
 
-- **Repository:** https://github.com/Azure-Samples/octocat-supply
-- **Zero-to-Agents Lab:** [demo/walkthroughs/general/demo-steps.md](https://github.com/Azure-Samples/octocat-supply/blob/main/demo/walkthroughs/general/demo-steps.md)
-- **Full Walkthrough Index:** [demo/walkthroughs/README.md](https://github.com/Azure-Samples/octocat-supply/blob/main/demo/walkthroughs/README.md)
-- **Architecture Docs:** [docs/architecture.md](https://github.com/Azure-Samples/octocat-supply/blob/main/docs/architecture.md)
+- **Repository:** https://github.com/udayansarma/octocat-supply
+- **Original Source:** https://github.com/Azure-Samples/octocat-supply
+- **Zero-to-Agents Lab:** [demo/walkthroughs/general/demo-steps.md](https://github.com/udayansarma/octocat-supply/blob/main/demo/walkthroughs/general/demo-steps.md)
+- **Full Walkthrough Index:** [demo/walkthroughs/README.md](https://github.com/udayansarma/octocat-supply/blob/main/demo/walkthroughs/README.md)
+- **Architecture Docs:** [docs/architecture.md](https://github.com/udayansarma/octocat-supply/blob/main/docs/architecture.md)
 - **API Documentation:** http://localhost:3000/api-docs (when running locally)
