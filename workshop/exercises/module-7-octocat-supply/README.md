@@ -183,10 +183,18 @@ npm run dev
 ```
 
 **Terminal 2 — Frontend:**
-```powershell
+```cmd
 cd frontend
-$env:VITE_API_URL = "http://localhost:3000"
+
+REM For cmd.exe (Command Prompt):
+set VITE_API_URL=http://localhost:3000
 npm run dev
+
+REM For PowerShell:
+REM $env:VITE_API_URL = "http://localhost:3000"
+REM npm run dev
+```
+```
 # ✅ Frontend runs at http://localhost:5173
 ```
 
