@@ -126,13 +126,21 @@ If you plan to do the MCP Server exercises, create a PAT:
 
 ### Step 1: Fork & Clone the Repository
 
+**Fork the repo** (do this first in your browser):
+1. Go to **https://github.com/Azure-Samples/octocat-supply**
+2. Click the **"Fork"** button (top right)
+3. Select your personal account as the destination
+4. Wait for the fork to complete
+
+**Then clone YOUR fork:**
+
 ```bash
-# Fork via GitHub UI first, then clone YOUR fork
+# Replace <your-username> with your GitHub username
 git clone https://github.com/<your-username>/octocat-supply.git
 cd octocat-supply
 ```
 
-> 💡 **Forking is recommended** so you can push changes, create PRs, and use Copilot Coding Agent features.
+> 💡 **Forking is recommended** so you can push changes, create PRs, and use Copilot Coding Agent features. The repo is **public** — anyone can fork it.
 
 ### Step 2: Install Dependencies
 
