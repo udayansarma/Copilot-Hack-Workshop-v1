@@ -153,15 +153,18 @@ cd ..
 #### Mac / Linux
 ```bash
 make db-init
+# OR without make:
+cd api && npm run db:seed:dev && cd ..
 ```
 
 #### Windows (PowerShell)
 ```powershell
 cd api
-npm run db:migrate
-npm run db:seed
+npm run db:seed:dev
 cd ..
 ```
+
+> ⚠️ The `db:migrate` and `db:seed` scripts require a TypeScript build (`npm run build`) first. Use the `:dev` variants which run TypeScript directly via `tsx`.
 
 ### Step 4: Start the Development Servers
 
