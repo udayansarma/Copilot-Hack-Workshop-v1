@@ -1,22 +1,33 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * SQLite database connection and helper functions
+ * Uses sql.js (WebAssembly-based) to avoid native compilation issues across
+ * different Node.js versions and platforms.
  */
 
-import Database from 'better-sqlite3';
+import initSqlJs, { type Database as SqlJsDatabase } from 'sql.js';
 import fs from 'fs';
 import path from 'path';
 import { DB_CONFIG, TEST_DB_CONFIG } from './config';
 
 /*
  * Database connection and query execution
- * Wraps better-sqlite3 Database to maintain API compatibility
+ * Wraps sql.js Database to maintain API compatibility with the rest of the app
  */
 class DatabaseConnection {
-  public db: Database.Database;
+  public db: SqlJsDatabase;
+  private dbPath: string;
 
-  constructor(db: Database.Database) {
+  constructor(db: SqlJsDatabase, dbPath: string) {
     this.db = db;
+    this.dbPath = dbPath;
+  }
+
+  private persist(): void {
+    if (this.dbPath !== ':memory:') {
+      const data = this.db.export();
+      fs.writeFileSync(this.dbPath, Buffer.from(data));
+    }
   }
 
   /**
@@ -24,36 +35,49 @@ class DatabaseConnection {
    * @param sql SQL statement to execute
    * @param params Parameters to bind to the SQL statement
    * @returns Object containing lastID (for INSERT) and number of changes
-   * @throws Error if lastInsertRowid exceeds JavaScript's safe integer range
-   * @note better-sqlite3 returns lastInsertRowid as number | bigint. We convert bigint to number
-   *       and validate it's within safe integer range to prevent silent truncation.
    */
   public run(sql: string, params: unknown[] = []): Promise<{ lastID?: number; changes: number }> {
-    const info = this.db.prepare(sql).run(...(params as any[]));
-    const lastID = info.lastInsertRowid;
-    
-    // Convert bigint to number with safety check to prevent silent truncation
-    if (typeof lastID === 'bigint') {
-      if (lastID > Number.MAX_SAFE_INTEGER || lastID < Number.MIN_SAFE_INTEGER) {
-        throw new Error(`Row ID ${lastID} exceeds safe integer range (${Number.MIN_SAFE_INTEGER} to ${Number.MAX_SAFE_INTEGER})`);
-      }
-      return Promise.resolve({ lastID: Number(lastID), changes: info.changes });
-    }
-    
-    return Promise.resolve({ lastID, changes: info.changes });
+    this.db.run(sql, params as any[]);
+    const lastIDResult = this.db.exec("SELECT last_insert_rowid()");
+    const changesResult = this.db.exec("SELECT changes()");
+    const lastID = lastIDResult[0]?.values[0]?.[0] as number | undefined;
+    const changes = (changesResult[0]?.values[0]?.[0] as number) || 0;
+    this.persist();
+    return Promise.resolve({ lastID, changes });
   }
 
   public get<T = unknown>(sql: string, params: unknown[] = []): Promise<T | undefined> {
-    const row = this.db.prepare(sql).get(...(params as any[]));
-    return Promise.resolve(row as T | undefined);
+    const stmt = this.db.prepare(sql);
+    stmt.bind(params as any[]);
+    if (stmt.step()) {
+      const cols = stmt.getColumnNames();
+      const values = stmt.get();
+      stmt.free();
+      const row: any = {};
+      cols.forEach((col: string, i: number) => { row[col] = values[i]; });
+      return Promise.resolve(row as T);
+    }
+    stmt.free();
+    return Promise.resolve(undefined);
   }
 
   public all<T = unknown>(sql: string, params: unknown[] = []): Promise<T[]> {
-    const rows = this.db.prepare(sql).all(...(params as any[]));
-    return Promise.resolve(rows as T[]);
+    const results: T[] = [];
+    const stmt = this.db.prepare(sql);
+    stmt.bind(params as any[]);
+    while (stmt.step()) {
+      const cols = stmt.getColumnNames();
+      const values = stmt.get();
+      const row: any = {};
+      cols.forEach((col: string, i: number) => { row[col] = values[i]; });
+      results.push(row as T);
+    }
+    stmt.free();
+    return Promise.resolve(results);
   }
 
   public close(): Promise<void> {
+    this.persist();
     this.db.close();
     return Promise.resolve();
   }
@@ -61,7 +85,7 @@ class DatabaseConnection {
 
 class SQLiteHelper {
   private static instance: SQLiteHelper;
-  private connection: Database.Database | null = null;
+  private connection: SqlJsDatabase | null = null;
 
   private constructor() {}
 
@@ -87,19 +111,20 @@ class SQLiteHelper {
     }
 
     try {
-      // better-sqlite3 constructor options
-      const options: Database.Options = {
-        verbose: process.env.NODE_ENV === 'development' ? console.log : undefined,
-        timeout: config.TIMEOUT
-      };
+      const SQL = await initSqlJs();
 
-      this.connection = new Database(config.DB_FILE, options);
+      // Load existing database file or create a new one
+      if (config.DB_FILE !== ':memory:' && fs.existsSync(config.DB_FILE)) {
+        const buffer = fs.readFileSync(config.DB_FILE);
+        this.connection = new SQL.Database(buffer);
+      } else {
+        this.connection = new SQL.Database();
+      }
 
       // Configure database settings
       this.setupDatabase(config);
 
-      const wrappedConnection = this.wrapConnection(this.connection);
-      return wrappedConnection;
+      return new DatabaseConnection(this.connection, config.DB_FILE);
     } catch (err) {
       throw new Error(`Failed to connect to database: ${(err as Error).message}`);
     }
@@ -114,7 +139,7 @@ class SQLiteHelper {
     // Enable foreign key constraints
     if (config.FOREIGN_KEYS) {
       try {
-        this.connection.pragma('foreign_keys = ON');
+        this.connection.run('PRAGMA foreign_keys = ON');
       } catch (err) {
         throw new Error(`Failed to enable foreign key constraints: ${(err as Error).message}`);
       }
@@ -123,18 +148,11 @@ class SQLiteHelper {
     // Enable WAL mode for better concurrency (only for file databases)
     if (config.ENABLE_WAL && config.DB_FILE !== ':memory:') {
       try {
-        this.connection.pragma('journal_mode = WAL');
+        this.connection.run('PRAGMA journal_mode = WAL');
       } catch (err) {
         throw new Error(`Failed to enable WAL mode: ${(err as Error).message}`);
       }
     }
-  }
-
-  /**
-   * Wrap the database connection with promisified methods
-   */
-  private wrapConnection(db: Database.Database): DatabaseConnection {
-    return new DatabaseConnection(db);
   }
 
   /**
